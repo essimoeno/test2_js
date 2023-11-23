@@ -59,30 +59,27 @@ function F32() {
 
 function F33() {
     var msgHTML = "";
+    
     for (var i = 0; i < array_number.length; i += 3) {
-        var arrayNums = [];
         for (var j = 0; j < array_number.length; j += 3) {
+            var arrayNums = [];
+            
             for (var x = i; x < i + 3; x++) {
-                var num = null;
                 for (var y = j; y < j + 3; y++) {
-                    num = parseInt(array_number[y].split(" ")[x]);
+                    var num = parseInt(array_number[x].split(" ")[y]);
+                    
                     if (!isNaN(num)) {
                         arrayNums.push(num);
                     } else {
-                        arrayNums.push(array_number[y].split(" ")[j]);
+                        arrayNums.push(array_number[x].split(" ")[y]);
                     }
                 }
-
             }
-
-        }
-
-        if (!F21(arrayNums)) {
-            msgHTML += '</br><b class="errormsg">Section ' + i + ' NOT valid</b>';
-
-            msgHTML += arrayNums;
+            if (!F21(arrayNums)) {
+                msgHTML += '<br><b class="errormsg">Section ' + i + ' - ' + j + ' NOT valid</b>';
+                msgHTML += arrayNums;
+            }
         }
     }
     outputDiv3.innerHTML += msgHTML;
-
 }
